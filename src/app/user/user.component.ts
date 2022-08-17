@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-user',
@@ -6,9 +6,9 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-
-  UserList:User[]=[];
-  NewUser:User={name:'',age:0,email:'',password:''};
+  @Output() userVM = new EventEmitter<User>();
+  
+  public NewUser:User={name:'',age:0,email:'',password:''};
   constructor() { }
 
   ngOnInit(): void {
@@ -18,19 +18,15 @@ export class UserComponent implements OnInit {
       form.form.markAllAsTouched();
     
     }
-    if(form.form.valid){
-    this.UserList.push({...this.NewUser});}
+  
+  else
+    this.userVM.emit(this.NewUser);
   
   }
-  deleteUser(User:User){
-    let i  =this.UserList.indexOf(User);
-    if(i>=0){
-      this.UserList.splice(i,1);
-    }
-  }
+  
 
 }
-interface User {
+export interface User {
   name: string;
   age: number;
   email:string;
