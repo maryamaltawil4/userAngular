@@ -1,0 +1,47 @@
+
+<div>
+<form #form="ngForm" (ngSubmit)="addUser(form)">
+<div>
+    <br><label > name </label>
+    <input  required type="text" [(ngModel)]="NewUser.name" name="name" >
+    <span *ngIf="form.form.controls['name']?.touched && ! form.form.controls['name']?.valid">required</span>
+   
+    <br><label > age </label>
+    <input type="number" [(ngModel)]="NewUser.age" name="age" >
+
+    <br><label > email </label>
+    <input  required type="email" [(ngModel)]="NewUser.email" email  name="email">
+    <span *ngIf="form.form.controls['email'].touched && ! form.form.controls['email']?.valid"> required</span>
+   
+    <br><label > password </label>
+    <input required type="password" [(ngModel)]="NewUser.password" name="password"> 
+    <span *ngIf="form.form.controls['password'].touched && ! form.form.controls['password']?.valid"> required</span>
+   
+   
+    </div>
+    <br><button type="submit">Add</button>
+</form>
+</div>
+<div>
+    <br>
+    <br>
+    <br>
+    <table border="1">
+     
+          <th>users table</th>
+    
+      <tr>
+    
+        <th >name</th>
+        <th >age</th>
+        <th >email</th>
+        <th ></th>
+      </tr>
+      <tr *ngFor="let User of UserList">
+        <td> {{User.name}}</td>
+        <td> {{User.age}}</td>
+        <td> {{User.email}}</td>
+        <td><button (click)="deleteUser(User)">delete</button></td>
+      </tr>
+    </table>
+    </div>
