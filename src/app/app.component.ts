@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { User } from './user/user.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 
 
  
@@ -12,18 +12,4 @@ import { User } from './user/user.component';
 })
 export class AppComponent {
 title='test';
-@Input() UserList: User[] = [];
-
-deleteUser(user:User){
-  let i  =this.UserList.indexOf(user);
-  if(i>=0){
-    this.UserList.splice(i,1);
-  }
 }
-addUser(user: User) {
-  this.UserList.push(user);
-}
-
-}
-
-

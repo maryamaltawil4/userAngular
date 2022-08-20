@@ -1,28 +1,25 @@
 
+<body>
+    <header>
+        <div class="hederItem1">Header Section</div>
+  
+    </header>
+    <div class="Main">
+        <div class="leftSide"> 
+         
+        <input class="userButton" routerLink="/List" value="User" type="button">
+         <a routerLink=""><button>Back</button></a>
+      </div> 
+      
+        <div class="rightSide">
+            <div class="rightSideItem1"><router-outlet></router-outlet></div>
+         
 
-<app-user (userVM)="addUser($event)"></app-user>
+        </div>
+    </div>
+    <div class="footer">
+        footer
+    </div>
+   
+</body>
 
-
-<div>
-<br>
-<br>
-<br>
-<table border="1">
- 
-      <th>users table</th>
-
-  <tr>
-
-    <th >name</th>
-    <th >age</th>
-    <th >email</th>
-    <th ></th>
-  </tr>
-  <tr *ngFor="let User of UserList">
-    <td> {{User.name}}</td>
-    <td> {{User.age}}</td>
-    <td> {{User.email}}</td>
-    <td><button (click)="deleteUser(User)">delete</button></td>
-  </tr>
-</table>
-</div>

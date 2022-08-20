@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background-color: darksalmon;
+
+    display: flex;
+    flex-direction: column;
+
+}
+header{
+    height: 60px;
+    font-size: 30px;
+    
+}
+
+.Main {
+    display: flex;
+    background-color: cornflowerblue;
+    height: 100vh;
+    text-align: center;
+    font-size: 30px;
+    
+
+}
+
+.rightSide {
+    flex: 1;
+    background-color: blueviolet;
+
+    padding: 20PX;
+    justify-content: space-between;
+     
+
+
+}
+
+.rightSideItem1 {
+
+    text-align: center;
+    border: 2px white solid;
+    margin: 3px;
+    height: 80%;
+    overflow: auto;
+}
+
+
+.footer {
+    background-color: black;
+    color: aliceblue;
+    min-height: 50px;
+    margin-top: auto;
+
+
+}
+
+.leftSide {
+    width:100px;
+    padding-top: 80px;
+  
+}
+
+.userButton{
+    font-size: 30px;
+}

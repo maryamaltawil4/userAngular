@@ -7,7 +7,8 @@ import { NgForm } from '@angular/forms';
 })
 export class UserComponent implements OnInit {
   @Output() userVM = new EventEmitter<User>();
-  
+
+
   public NewUser:User={name:'',age:0,email:'',password:''};
   constructor() { }
 
@@ -18,15 +19,14 @@ export class UserComponent implements OnInit {
       form.form.markAllAsTouched();
     
     }
-  
-  else
+
+    if(form.form.valid)
     this.userVM.emit(this.NewUser);
   
   }
-  
 
 }
-export interface User {
+interface User {
   name: string;
   age: number;
   email:string;

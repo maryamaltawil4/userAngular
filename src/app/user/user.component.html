@@ -1,6 +1,6 @@
 
 <div>
-<form #form="ngForm" (ngSubmit)="addUser(form)">
+<form #form="ngForm" name="myForm">
 <div>
     <br><label > name </label>
     <input  required type="text" [(ngModel)]="NewUser.name" name="name" >
@@ -19,7 +19,7 @@
    
    
     </div>
-    <br><button type="submit">Add</button>
+    <br><button type="submit" (click)="addUser(form)">Add User</button>
 </form>
 </div>
 
