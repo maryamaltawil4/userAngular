@@ -12,12 +12,16 @@
         <th >name</th>
         <th >age</th>
         <th >email</th>
+        <th >dateOfBirthday</th>
+       
         <th ></th>
       </tr>
-      <tr *ngFor="let User of UserList">
+      <tr *ngFor="let User of service.UserList">
         <td> {{User.name}}</td>
-        <td> {{User.age}}</td>
+        <td> {{User.age  }}</td>
         <td> {{User.email}}</td>
+        <td> {{User.dateOfBirthday| date }}</td>
+    
         <td><button (click)="deleteUser(User)">delete</button></td>
        
       </tr>

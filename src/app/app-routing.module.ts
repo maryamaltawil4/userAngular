@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TableUserComponent } from './table/table-user.component';
-import { UserComponent } from './user/user.component';
+import { TableUserComponent } from './users/table/table-user.component';
+
 
 const routes: Routes = [
-  { path: '', component: UserComponent },
-  { path: 'List', component:TableUserComponent},
-  {path: 'form', component: UserComponent},
-  {path: ':id', component: UserComponent}
+  {path:"users",loadChildren:()=>import('./users/users.module').then(c=>c.UsersModule)}
+ 
 ];
 
 @NgModule({
