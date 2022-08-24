@@ -5,16 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { GetAgePipe } from './get-age.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { PostComponent } from './post/post.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    GetAgePipe
+    PostComponent,
+ 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [GetAgePipe],
   bootstrap: [AppComponent]

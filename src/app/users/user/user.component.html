@@ -1,17 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Form</title>
 
+
+  <style>
+.star{
+color:red;}
+.container{
+            margin: auto;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            box-shadow: #999;
+        }
+.form-group{
+  margin: 10px;
+  display:flex; 
+  flex-direction: row;
+  justify-content:space-between;
+
+  
+}
+
+</style>
+</head>
+<body>
+  <br>
+  <h2>Add User </h2>
+  <br>
+<div class="container">
+  
+  <form #form="ngForm" (ngSubmit)="addUser(form)">
+
+    <div class="form-group">
+     <div ><label for="FirstName" >First Name <sup class="star">*</sup> </label></div> 
+     <pre> </pre>
+        <input required type="text"  name="FirstName" placeholder="First Name" style="flex:1 " [(ngModel)]="NewUser.first_name">
+     
+    </div> 
+
+    <div class="form-group">
+      <label for="LastName" >Last Name <sup class="star">*</sup> </label>
+      <pre> </pre>
+        <input required type="text"  name="LastName" placeholder="Last Name" style="flex:1" [(ngModel)]="NewUser.last_name">
+     
+    </div> 
+
+    <div class="form-group ">
+      <label for="inputDate" >Birth Date </label>
+      <pre>   </pre>
+        <input   required type="Date"  name="Date" placeholder="birth date" style="flex:1" [(ngModel)]="NewUser.dateOfBirthday" >
+      </div>
+    
+
+    <div class="form-group">
+      <label for="email" > Email <sup class="star">*</sup> </label>
+      <pre>     </pre>
+        <input required type="email"  name="email" placeholder="email" style="flex:1"[(ngModel)]="NewUser.email">
+      
+    </div>
+
+    
+    <div class="form-group ">
+      <label for="Password" >Password <sup class="star">*</sup> </label>
+      <pre>  </pre>
+        <input  required type="password" name="Password" placeholder="Password"style="flex:1"[(ngModel)]="NewUser.password" >
+      
+    </div>
+   <div style="padding-left:97px ;">
+    <button  type="submit" (click)="addUser(form)" style="font-size: 15px ;padding: 5px 20px;color:white;background-color: #6f7880; border-radius: 10px; border:#6f7880 ;" >{{id>-1? "Update": "Add"}}</button>
+</div>
+  </form>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+<!--
 <div>
-<form #form="ngForm" (ngSubmit)="addUser(form)">
+   
+<form #form="ngForm" name="myForm">
 <div>
-    <br><label > name </label>
-    <input  required type="text" [(ngModel)]="NewUser.name" name="name" >
+    <br><label >  first name </label>
+    <input  required type="text" [(ngModel)]="NewUser.first_name" name="name" >
     <span *ngIf="form.form.controls['name']?.touched && ! form.form.controls['name']?.valid">required</span>
 
-    <br><label > date of birthday  </label>
-    <input type="date" [(ngModel)]="NewUser.dateOfBirthday" name="date of birthday" >
+    <br><label >  last_name name </label>
+    <input  required type="text" [(ngModel)]="NewUser.last_name" name="name" >
+    <span *ngIf="form.form.controls['name']?.touched && ! form.form.controls['name']?.valid">required</span>
 
     <br><label > email </label>
     <input  required type="email" [(ngModel)]="NewUser.email" email  name="email">
     <span *ngIf="form.form.controls['email']?.touched && ! form.form.controls['email']?.valid"> required</span>
+    
+    <br><label > date of birthday  </label>
+    <input type="date" [(ngModel)]="NewUser.dateOfBirthday" name="date of birthday" >
+
+
    
     <br><label > password </label>
     <input required type="password" [(ngModel)]="NewUser.password" name="password"> 
@@ -19,7 +112,9 @@
    
    
     </div>
-    <br><button type="submit" >Add User</button>
+    
 </form>
+<br><button type="submit" (click)="addUser(form)">{{id>-1? "Update": "Add"}}</button>
 </div>
 
+-->

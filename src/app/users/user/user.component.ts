@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetAgePipe } from 'src/app/get-age.pipe';
 import { UserServesService,User} from 'src/app/user-serves.service';
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -11,14 +12,23 @@ import { UserServesService,User} from 'src/app/user-serves.service';
 export class UserComponent implements OnInit {
  // @Output() userVM = new EventEmitter<User>();
 
+ UserList:{first_name:string,last_name:string}[]=[];
+ id:number=0;
+ nextId: number = 0;
+ // public NewUser:User={name:'',age:0,email:'',password:'',dateOfBirthday: new Date()};
+  NewUser:User={ id: 0,first_name:'',last_name:'',email:'',dateOfBirthday:new Date(),password:'', age:0};
 
-  public NewUser:User={name:'',age:0,email:'',password:'',dateOfBirthday: new Date()};
-
-  constructor(private service:UserServesService ,public router:Router,public getAge:GetAgePipe) { }
+  constructor(private service:UserServesService ,public router:Router,public getAge:GetAgePipe,public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.id = +this.activatedRoute.snapshot.params['id'];
+    if (this.id > 0)
+      this.service.returnUser(this.id).subscribe((v: User) => {
+        this.NewUser = v;
+      })
+     
   }
-  addUser(form:NgForm){
+  /*addUser(form:NgForm){
     if(!form.form.valid){
       form.form.markAllAsTouched();
 
@@ -26,12 +36,49 @@ export class UserComponent implements OnInit {
     }
 
   else {
-    this.NewUser.age=this.getAge.transform(this.NewUser.dateOfBirthday);
-    this.service.UserList.push(this.NewUser);
+    //this.NewUser.age=this.getAge.transform(this.NewUser.dateOfBirthday);
+    this.UserList.push(this.NewUser);
     this.router.navigate(['/users/List']);
   }
   
+  }*/
+  addUser(form: NgForm) {
+    let i  =this.UserList.indexOf(this.NewUser);
+    if (this.NewUser.id&& this.NewUser.id > -1&& i>-1) {
+      this.updateRecord();
+      this.router.navigate(['/users/List']);
+    }
+
+
+    else {
+      if(!form.form.valid){
+        form.form.markAllAsTouched();
+  
+      
+      }
+  
+    else {
+      
+      if(!form.form.valid){
+        form.form.markAllAsTouched();
+      }
+      if(form.form.valid)
+
+     {
+      //this.NewUser.age=this.getAge.transform(this.NewUser.dateOfBirthday);
+      this.service.addUser(this.NewUser)
+      .subscribe(user => this.UserList.push(user));
+      this.router.navigate(['/users/List']);
+     } 
+    }
   }
+  }
+  
+  updateRecord() {
+    let i  =this.UserList.indexOf(this.NewUser);
+    this.UserList.splice(i,1);
+    this.service.updateUser({ ...this.NewUser }).subscribe( );;
 
+  
+  }
 }
-
