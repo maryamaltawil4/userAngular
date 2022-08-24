@@ -15,14 +15,20 @@ export class TableUserComponent implements OnInit {
   UserList:{id:number,first_name:string,last_name:string,email:string,age:number,dateOfBirthday:Date,password:string}[]=[];
   
   constructor(public service:UserServesService,public router:Router,public getAge:GetAgePipe) { }
-
+  i:number=0 ;
   ngOnInit(): void {
     //this.Users=this.service.UserList;
-    this.service.returnAll().subscribe(data=>this.UserList=data)
+    this.service.returnAll().subscribe( data => {
+      this.UserList = data;
+      this.i = this.UserList.length;
+      this.i=this.i;
+
+    });
 
   }
 
-  i:number =this.UserList.length;
+
+
 
  // NewUser:{ id?:Number ,name:String, email:String, age:Number, DOB:Date, password:String;}[]=[];
 
@@ -42,6 +48,8 @@ deleteUser(user:User): void {
   }).then((result) => {
     if (result.isConfirmed && i>=0) {
       this.UserList.splice(i,1);
+      this.service.deleteUer(user)
+      .subscribe();
       Swal.fire(
         'Deleted!',
         'Your file has been deleted.',

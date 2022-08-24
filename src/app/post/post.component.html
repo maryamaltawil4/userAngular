@@ -1,30 +1,67 @@
 <style>
+
     .container{
         margin: auto;
         margin-top:10px;
         width: 80%;
     }
+    .box {
+    width: fit-content;
+    padding: 10px;
+    border-radius: 6px;
+}
+.post {
+    width: 601px;
+}
     .form-control{
         border: 0px  #999;
     }
     .table{
         box-shadow: 1px 1px 1px #999;
         box-shadow: 0 0 5px #888;
+        display: block;
     }
 </style>
 <div class="container table">
-    <div class="form-floating ">
-        <textarea f class="form-control" placeholder="  Add Your Post Here" style="overflow:auto; width:95%;margin-top: 16px;padding-right: 16px;"></textarea>
+<!--<form #form="ngForm" (ngSubmit)="getPost(form)">--->
+        
+        <textarea [(ngModel)]="NewPost.title" class="form-control" placeholder="  Add Your Post Here" style="overflow:auto; width:95%;margin-top: 16px;padding-right: 16px; height: 60px"></textarea>
       <br>
       <br>
-        <button type="button" style="margin-left:20px;font-size: 25px ;background-color: #999;  border-radius:10px;color: aliceblue;padding: 4px; border: #888;">Share</button>
+        <button type="submit" (click)="getPost(NewPost)" style="margin-left:20px;font-size: 25px ;background-color: #999;  border-radius:10px;color: aliceblue;padding: 4px; border: #888;">Share</button>
         <br>
         <br>
+ 
     </div>
-</div>
+
 <br>
-<div class="container"><p style="font-weight: bold; font-size: 25px;">Posts</p></div>
+
 <div class="container">
+
+    <div class="empty-box"></div>
+      
+            <h1 class="sub-title">Posts</h1>
+        
+
+
+
+        <div class="box post">
+           <!-- <div>post text</div>
+            <div>post date</div>-->
+        </div>
+
+    </div>
+    <table class="table" style="margin-top: 16px;margin-right: 100px;margin-left: 100px;">
+        
+            <tr  *ngFor="let x of postList; let i = index" >
+            <td >{{x.title}} </td>  </tr> 
+           <tr  *ngFor="let x of postList; let i = index" >
+            <td style="size: small;" >{{x.creatDate | date}}</td> </tr> 
+
+            
+           
+          
+    </table>
     
-</div>
+
 

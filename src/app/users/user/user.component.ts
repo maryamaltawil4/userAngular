@@ -49,20 +49,12 @@ export class UserComponent implements OnInit {
       this.router.navigate(['/users/List']);
     }
 
-
-    else {
-      if(!form.form.valid){
-        form.form.markAllAsTouched();
-  
-      
-      }
-  
     else {
       
       if(!form.form.valid){
         form.form.markAllAsTouched();
       }
-      if(form.form.valid)
+      else(form.form.valid)
 
      {
       //this.NewUser.age=this.getAge.transform(this.NewUser.dateOfBirthday);
@@ -72,7 +64,7 @@ export class UserComponent implements OnInit {
      } 
     }
   }
-  }
+  
   
   updateRecord() {
     let i  =this.UserList.indexOf(this.NewUser);

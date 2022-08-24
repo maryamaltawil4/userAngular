@@ -27,10 +27,15 @@ export class UserServesService {
     updateUser(user: User) {
     return this.http.put("https://localhost:7003/api/UserConroller", user);
 }
+public getPost(): Observable<Post[]>{
+  return this.http.get<Post[]>("https://localhost:7003/api/Post/GetAll");
+ } 
+
+ public addPost(post:Post){
+  return this.http.post<Post>("https://localhost:7003/api/Post/Create",post);
+ } 
 
 }
-
-
  export interface User {
   id:number;
   first_name: string;
@@ -40,3 +45,10 @@ export class UserServesService {
   email: string;
   password:string;
 }
+export interface Post {
+  id:number;
+  title:string;
+  creatDate: Date;
+
+}
+
