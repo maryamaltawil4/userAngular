@@ -42,35 +42,34 @@ export class UserComponent implements OnInit {
   }
   
   }*/
-  addUser(form: NgForm) {
-    let i  =this.UserList.indexOf(this.NewUser);
-    if (this.NewUser.id&& this.NewUser.id > -1&& i>-1) {
-      this.updateRecord();
-      this.router.navigate(['/users/List']);
+  addUser(form:NgForm){
+        
+    if(!form.form.valid){
+      form.form.markAllAsTouched();
     }
-
-    else {
-      
-      if(!form.form.valid){
-        form.form.markAllAsTouched();
+    if(form.form.valid)
+   { if(this.id>0){
+    this.service.PutUser({...this.NewUser}).subscribe(
+      (response) => {
+        this.router.navigate(['/users/List']);
       }
-      else(form.form.valid)
+    );
+   
 
-     {
-      //this.NewUser.age=this.getAge.transform(this.NewUser.dateOfBirthday);
-      this.service.addUser(this.NewUser)
-      .subscribe(user => this.UserList.push(user));
+  }else
+    
+   { 
+    
+    this.service
+    .PostUser(this.NewUser)
+    .subscribe((response) => {this.UserList.push(this.NewUser);
       this.router.navigate(['/users/List']);
-     } 
-    }
-  }
-  
-  
-  updateRecord() {
-    let i  =this.UserList.indexOf(this.NewUser);
-    this.UserList.splice(i,1);
-    this.service.updateUser({ ...this.NewUser }).subscribe( );;
+    });
+   
 
-  
+   
+
+    }
+   } 
   }
 }

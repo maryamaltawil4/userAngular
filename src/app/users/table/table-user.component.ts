@@ -26,14 +26,7 @@ export class TableUserComponent implements OnInit {
     });
 
   }
-
-
-
-
  // NewUser:{ id?:Number ,name:String, email:String, age:Number, DOB:Date, password:String;}[]=[];
-
-  
-
 //// Delete 
 deleteUser(user:User): void {
   let i  =this.UserList.indexOf(user);
@@ -48,7 +41,7 @@ deleteUser(user:User): void {
   }).then((result) => {
     if (result.isConfirmed && i>=0) {
       this.UserList.splice(i,1);
-      this.service.deleteUer(user)
+      this.service.deleteUser(user.id)
       .subscribe();
       Swal.fire(
         'Deleted!',
@@ -58,6 +51,15 @@ deleteUser(user:User): void {
     }
   })
     }
+    DeleteUser(user: User) {
+      let i = this.UserList.indexOf(user);
+      if (i >= 0) {
+        this.UserList.splice(i, 1);
+        this.service.deleteUser(user.id).subscribe();
+      }
+  
+    }
+   
 /*addUser(user: User) {
   
   this.service.UserList.push(user);

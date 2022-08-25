@@ -8,6 +8,10 @@ import { Data } from '@angular/router';
   
 })
 export class UserServesService {
+  [x: string]: any;
+  apiPostGetAllGet() {
+    throw new Error('Method not implemented.');
+  }
  
   //UserList:User[]=[];
   constructor(private http:HttpClient) { }
@@ -15,25 +19,25 @@ export class UserServesService {
   public returnAll(): Observable<User[]>{
     return this.http.get<User[]>("https://localhost:7003/api/UserConroller");
    } 
-   public addUser(user:User){
+   public PostUser(user:User){
     return this.http.post<User>("https://localhost:7003/api/UserConroller",user);
    } 
    returnUser(id: number): Observable<User> {
     return this.http.get<User>("https://localhost:7003/api/UserConroller" + "/" + id);
 }
- deleteUer(user:User){
-  return this.http.delete("https://localhost:7003/api/UserConroller");
+ deleteUser(id: number){
+  return this.http.delete("https://localhost:7003/api/UserConroller${id}");
  }
-    updateUser(user: User) {
+    PutUser(user: User) {
     return this.http.put("https://localhost:7003/api/UserConroller", user);
 }
-public getPost(): Observable<Post[]>{
+/*public getPost(): Observable<Post[]>{
   return this.http.get<Post[]>("https://localhost:7003/api/Post/GetAll");
  } 
 
  public addPost(post:Post){
   return this.http.post<Post>("https://localhost:7003/api/Post/Create",post);
- } 
+ } */
 
 }
  export interface User {
@@ -45,10 +49,10 @@ public getPost(): Observable<Post[]>{
   email: string;
   password:string;
 }
-export interface Post {
+/*export interface Post {
   id:number;
   title:string;
   creatDate: Date;
 
-}
+}*/
 

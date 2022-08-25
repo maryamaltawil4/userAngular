@@ -1,0 +1,43 @@
+<style>
+    .star{
+    color:red;}
+    .container{
+                margin: auto;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                box-shadow: #999;
+            }
+    .form-group{
+      margin: 10px;
+      display:flex; 
+      flex-direction: row;
+      justify-content:space-between;
+    }
+      .table{
+              border-collapse: collapse;
+              box-shadow: 1px 1px 1px #999;
+                -moz-box-shadow: 0 0 5px #888;
+                -webkit-box-shadow: 0 0 5px#888;
+                box-shadow: 0 0 5px #888;
+                width: 100%;
+            }
+      
+    
+    
+    </style>
+
+<div class="table">
+
+    <form form #form="ngForm" (ngSubmit)="login(form)">
+        <div class="form-group">
+        <label ><b>Username <sup class="star">*</sup></b></label>
+        <input id="username" type="text" [(ngModel)]="NewUser.username" name="username" required>
+        </div>
+        <div class="form-group">
+        <label ><b>Password<sup class="star">*</sup></b></label>
+        <input id="pass" type="password" [(ngModel)]="NewUser.password" name="password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+
+    </form>
+</div>

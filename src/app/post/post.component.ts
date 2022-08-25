@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Post, UserServesService } from '../user-serves.service';
+import { PostService, PostView } from 'src/typescript-angular-client-generated';
+import { UserServesService } from '../user-serves.service';
 
 @Component({
   selector: 'app-post',
@@ -11,13 +12,15 @@ import { Post, UserServesService } from '../user-serves.service';
 export class PostComponent implements OnInit {
 
 
-   NewPost:Post={ id: 0,title:'',creatDate: new Date()};
-   postList:{id:number,title:string,creatDate:Date }[]=[];
-   
-   constructor(private service:UserServesService ,public router:Router,public activatedRoute: ActivatedRoute) { }
+   //NewPost:Post={ title:'',creatDate: new Date()};
+   //postList:{title:string | undefined,creatDate:Date }[]=[];
+    postList?:PostView[];
+    post?: PostView;
+   constructor(private service:UserServesService ,public router:Router,public activatedRoute: ActivatedRoute,public postService: PostService) { }
  
    ngOnInit(): void {
-     
+    this.postService.apiPostGetAllGet().subscribe(Post => this.postList = Post);
+
    }
   /* getPost(form:NgForm){
         if(!form.form.valid){
@@ -32,10 +35,13 @@ export class PostComponent implements OnInit {
        
        } 
       }*/
-      getPost(post: Post) {
+      getPost() {
   
-  this.postList.push(post);
-  
+        var _username= document.getElementById("postcon")!.textContent;
+        if (_username) this.post!.title= _username; 
+        this.postService.apiPostCreatePost(this.post).subscribe();
+        
+        
 }
    
 

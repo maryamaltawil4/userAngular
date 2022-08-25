@@ -24,11 +24,12 @@
 </style>
 <div class="container table">
 <!--<form #form="ngForm" (ngSubmit)="getPost(form)">--->
-        
-        <textarea [(ngModel)]="NewPost.title" class="form-control" placeholder="  Add Your Post Here" style="overflow:auto; width:95%;margin-top: 16px;padding-right: 16px; height: 60px"></textarea>
+    
+        <!--[(ngModel)]="NewPost.title"--->
+        <textarea id="postcon"  class="form-control" placeholder="  Add Your Post Here" style="overflow:auto; width:95%;margin-top: 16px;padding-right: 16px; height: 60px"></textarea>
       <br>
       <br>
-        <button type="submit" (click)="getPost(NewPost)" style="margin-left:20px;font-size: 25px ;background-color: #999;  border-radius:10px;color: aliceblue;padding: 4px; border: #888;">Share</button>
+        <button type="submit" (click)="getPost()" style="margin-left:20px;font-size: 25px ;background-color: #999;  border-radius:10px;color: aliceblue;padding: 4px; border: #888;">Share</button>
         <br>
         <br>
  
@@ -40,7 +41,7 @@
 
     <div class="empty-box"></div>
       
-            <h1 class="sub-title">Posts</h1>
+            <h1 class="title">Posts</h1>
         
 
 
@@ -51,17 +52,16 @@
         </div>
 
     </div>
-    <table class="table" style="margin-top: 16px;margin-right: 100px;margin-left: 100px;">
+    <div  class="table" style="margin-top: 16px;margin-right: 100px;margin-left: 100px;">
         
-            <tr  *ngFor="let x of postList; let i = index" >
+        <div *ngFor="let x of this.postList">
+            <p>{{x.title}}</p>
+            <p>{{x.creatDate | date}}</p>
+      <!--<tr  *ngFor="let x of postList; let i = index" >
             <td >{{x.title}} </td>  </tr> 
            <tr  *ngFor="let x of postList; let i = index" >
-            <td style="size: small;" >{{x.creatDate | date}}</td> </tr> 
-
-            
-           
-          
-    </table>
+            <td style="size: small;" ></td> </tr> -->
+           </div>
     
 
 
